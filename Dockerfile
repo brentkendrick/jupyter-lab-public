@@ -92,7 +92,7 @@ RUN conda install --quiet --yes \
     jupyter labextension install ipyvolume --no-build && \
     jupyter labextension install jupyter-matplotlib --no-build && \
     # jupyter labextension install ipysheet --no-build && \
-    jupyter lab build --dev-build=False --minimize=False -y && \
+    # jupyter lab build --dev-build=False --minimize=False -y && \
     jupyter lab clean -y && \
     npm cache clean --force && \
     rm -rf "/home/${NB_USER}/.cache/yarn" && \
