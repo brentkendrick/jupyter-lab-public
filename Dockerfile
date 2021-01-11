@@ -1,6 +1,6 @@
 # Copyright (c) Jupyter Development Team.
 # Distributed under the terms of the Modified BSD License.
-ARG BASE_CONTAINER=jupyter/minimal-notebook:42f4c82a07ff
+ARG BASE_CONTAINER=jupyter/minimal-notebook
 FROM $BASE_CONTAINER
 
 LABEL maintainer="Brent Kendrick"
@@ -52,7 +52,7 @@ RUN conda install --quiet --yes \
     # 'ipysheet=0.4.*'\
     'ipyvolume=0.5.*'\
     'ipyvuetify=1.5.*'\
-    'jupytext=1.6.*' \
+    # 'jupytext=1.6.*' \
     'matplotlib-base=3.3.*' \
     'numpy=1.19.*' \
     #'numba=0.51.*' \
@@ -84,7 +84,7 @@ RUN conda install --quiet --yes \
     # https://github.com/jupyter-widgets/ipywidgets/tree/master/packages/jupyterlab-manager
     jupyter labextension install @jupyter-widgets/jupyterlab-manager --no-build && \
     # jupyter labextension install @bokeh/jupyter_bokeh@^2.0.0 --no-build && \
-    jupyter labextension install jupyterlab-jupytext --no-build && \
+    # jupyter labextension install jupyterlab-jupytext --no-build && \
     jupyter labextension install jupyterlab-plotly@4.13.0 --no-build && \
     jupyter labextension install @jupyter-voila/jupyterlab-preview --no-build && \
     # jupyter labextension install bqplot --no-build && \
