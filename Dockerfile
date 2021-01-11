@@ -84,7 +84,7 @@ RUN conda install --quiet --yes \
     # https://github.com/jupyter-widgets/ipywidgets/tree/master/packages/jupyterlab-manager
     jupyter labextension install @jupyter-widgets/jupyterlab-manager --no-build && \
     # jupyter labextension install @bokeh/jupyter_bokeh@^2.0.0 --no-build && \
-    jupyter labextension install jupyterlab-jupytext --no-build && \
+    jupyter labextension install jupyterlab-jupytext@1.6.0 --no-build && \
     jupyter labextension install jupyterlab-plotly@4.13.0 --no-build && \
     jupyter labextension install @jupyter-voila/jupyterlab-preview --no-build && \
     # jupyter labextension install bqplot --no-build && \
