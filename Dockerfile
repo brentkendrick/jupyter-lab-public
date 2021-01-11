@@ -21,7 +21,7 @@ RUN git config --global user.email "brentkend@gmail.com" && \
 
 # clone the git repo containing necessary files
 WORKDIR /home/jovyan/
-RUN git clone git@github.com:brentkendrick/jupydock.git 
+RUN git clone git@github.com:brentkendrick/jupyter-lab-public.git
 
 # # Create virtual env 
 # WORKDIR /home/ubuntu/docker_ubuntu_miniconda2 
@@ -30,8 +30,8 @@ RUN git clone git@github.com:brentkendrick/jupydock.git
 # RUN echo "source activate $(head -1 environment.yml | cut -d' ' -f2)" > ~/.bashrc
 # ENV PATH /opt/conda/envs/$(head -1 environment.yml | cut -d' ' -f2)/bin:$PATH
 
-RUN mv /home/jovyan/jupydock/jupyter-config-files/jupyter_config.py /home/jovyan/.jupyter
-RUN mv /home/jovyan/jupydock/jupyter-config-files/jupyter_notebook_config.py /home/jovyan/.jupyter
+RUN mv /home/jovyan/jupyter-lab-public/jupyter-config-files/jupyter_config.py /home/jovyan/.jupyter
+RUN mv /home/jovyan/jupyter-lab-public/jupyter-config-files/jupyter_notebook_config.py /home/jovyan/.jupyter
 
 # USER $NB_UID
 
@@ -120,13 +120,14 @@ ENV XDG_CACHE_HOME="/home/${NB_USER}/.cache/"
 RUN MPLBACKEND=Agg python -c "import matplotlib.pyplot" && \
     fix-permissions "/home/${NB_USER}"
 
-EXPOSE 5573
+EXPOSE 5574
 
 # USER $NB_UID
 # Run Jupyter notebook as Docker main process
-RUN rm -r /home/jovyan/jupydock
+RUN rm -r /home/jovyan/jupyter-lab-public
 
-CMD git clone git@github.com:brentkendrick/jupydock.git && \
+# Run git clone every time container starts to pull latest data/notebooks
+CMD git clone git@github.com:brentkendrick/jupyter-lab-public.git && \
   jupyter lab --allow-root
 
 WORKDIR $HOME
