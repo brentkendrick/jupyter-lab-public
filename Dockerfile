@@ -21,7 +21,7 @@ RUN git config --global user.email "brentkend@gmail.com" && \
 
 # clone the git repo containing necessary files
 WORKDIR /home/jovyan/
-RUN git clone git@github.com:brentkendrick/jupyter-lab-public.git
+RUN git clone https://github.com/brentkendrick/jupyter-lab-public.git
 
 # # Create virtual env 
 # WORKDIR /home/ubuntu/docker_ubuntu_miniconda2 
@@ -127,7 +127,7 @@ EXPOSE 5574
 RUN rm -r /home/jovyan/jupyter-lab-public
 
 # Run git clone every time container starts to pull latest data/notebooks
-CMD git clone git@github.com:brentkendrick/jupyter-lab-public.git && \
+CMD git clone https://github.com/brentkendrick/jupyter-lab-public.git && \
   jupyter lab --allow-root
 
 WORKDIR $HOME
