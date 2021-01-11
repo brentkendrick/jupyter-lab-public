@@ -1,0 +1,4 @@
+# don't track virtual env files
+
+.vscode
+__pycache__
