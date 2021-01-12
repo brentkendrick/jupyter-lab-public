@@ -78,22 +78,22 @@ RUN conda install --quiet --yes \
     && \
     conda clean --all -f -y && \
     # Activate ipywidgets extension in the environment that runs the notebook server
-    jupyter nbextension enable --py widgetsnbextension --sys-prefix && \
-    # Also activate ipywidgets extension for JupyterLab
-    # Check this URL for most recent compatibilities
-    # https://github.com/jupyter-widgets/ipywidgets/tree/master/packages/jupyterlab-manager
-    jupyter labextension install @jupyter-widgets/jupyterlab-manager --no-build && \
-    # jupyter labextension install @bokeh/jupyter_bokeh@^2.0.0 --no-build && \
-    jupyter labextension install jupyterlab-jupytext --no-build && \
-    jupyter labextension install jupyterlab-plotly@4.13.0 --no-build && \
-    jupyter labextension install @jupyter-voila/jupyterlab-preview --no-build && \
-    # jupyter labextension install bqplot --no-build && \
-    jupyter labextension install jupyter-vuetify --no-build && \
-    jupyter labextension install ipyvolume --no-build && \
-    jupyter labextension install jupyter-matplotlib --no-build && \
-    # jupyter labextension install ipysheet --no-build && \
-    jupyter lab build --dev-build=False --minimize=False -y && \
-    jupyter lab clean -y && \
+    # jupyter nbextension enable --py widgetsnbextension --sys-prefix && \
+    # # Also activate ipywidgets extension for JupyterLab
+    # # Check this URL for most recent compatibilities
+    # # https://github.com/jupyter-widgets/ipywidgets/tree/master/packages/jupyterlab-manager
+    # jupyter labextension install @jupyter-widgets/jupyterlab-manager --no-build && \
+    # # jupyter labextension install @bokeh/jupyter_bokeh@^2.0.0 --no-build && \
+    # jupyter labextension install jupyterlab-jupytext --no-build && \
+    # jupyter labextension install jupyterlab-plotly@4.13.0 --no-build && \
+    # jupyter labextension install @jupyter-voila/jupyterlab-preview --no-build && \
+    # # jupyter labextension install bqplot --no-build && \
+    # jupyter labextension install jupyter-vuetify --no-build && \
+    # jupyter labextension install ipyvolume --no-build && \
+    # jupyter labextension install jupyter-matplotlib --no-build && \
+    # # jupyter labextension install ipysheet --no-build && \
+    # jupyter lab build --dev-build=False --minimize=False -y && \
+    # jupyter lab clean -y && \
     npm cache clean --force && \
     rm -rf "/home/${NB_USER}/.cache/yarn" && \
     rm -rf "/home/${NB_USER}/.node-gyp" && \
@@ -128,6 +128,6 @@ RUN rm -r /home/jovyan/jupyter-lab-public
 
 # Run git clone every time container starts to pull latest data/notebooks
 CMD git clone https://github.com/brentkendrick/jupyter-lab-public.git && \
-  jupyter lab --allow-root
+  jupyter notebook --allow-root
 
 WORKDIR $HOME
