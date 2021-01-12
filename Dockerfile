@@ -75,6 +75,11 @@ RUN conda install --quiet --yes \
     'voila-vuetify=0.5.*'\
     'widgetsnbextension=3.5.*'\
     'xlrd=1.2.*' \
+    'psycopg2=2.8.5' \
+    'openpyxl=3.0.*' \
+    'dash = 1.18.*' \
+    'dash-bootstrap-components = 0.11.*' \
+
     && \
     conda clean --all -f -y && \
     # Activate ipywidgets extension in the environment that runs the notebook server
@@ -126,8 +131,15 @@ EXPOSE 5574
 # Run Jupyter notebook as Docker main process
 RUN rm -r /home/jovyan/jupyter-lab-public
 
-# Run git clone every time container starts to pull latest data/notebooks
-CMD git clone https://github.com/brentkendrick/jupyter-lab-public.git && \
-  jupyter notebook --allow-root
+RUN mkdir /home/jovyan/jupyter-lab-public
+RUN mkdir /home/jovyan/jupyter-lab-public/shared
+RUN mkdir /home/jovyan/jupyter-lab-public/shared/notebooks
+WORKDIR /home/jovyan/
 
-WORKDIR $HOME
+# # Run git clone every time container starts to pull latest data/notebooks
+# CMD git clone https://github.com/brentkendrick/jupyter-lab-public.git && \
+#     # cd /home/jovyan/jupyter-lab-public/shared && \
+#   jupyter notebook --allow-root
+
+CMD cd /home/jovyan/jupyter-lab-public/shared && \
+  jupyter notebook --allow-root
