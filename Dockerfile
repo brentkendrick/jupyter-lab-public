@@ -126,6 +126,7 @@ RUN MPLBACKEND=Agg python -c "import matplotlib.pyplot" && \
     fix-permissions "/home/${NB_USER}"
 
 EXPOSE 5574
+EXPOSE 8052
 
 # USER $NB_UID
 # Run Jupyter notebook as Docker main process
@@ -142,4 +143,4 @@ WORKDIR /home/jovyan/
 #   jupyter notebook --allow-root
 
 CMD cd /home/jovyan/jupyter-lab-public/shared && \
-  jupyter notebook --allow-root
+  jupyter notebook
